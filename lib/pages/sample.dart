@@ -11,7 +11,19 @@ Future<ExchangesList> fetchExchanges() async {
   if (response.statusCode == 200) {
     // var smth = jsonDecode(response.body)['data'];
     // print(smth);
+    // final List<dynamic> dataList = jsonDecode(response.body)['data'];
+    // final item = dataList[0];
+    // final values = item.values;
+    // print(item['values'].values);
+    // item['values'].values.USD.forEach((v) => print('${v}'));
+    // print(values.USD);
     // print(response.body[0]);
+    // var smth = jsonDecode(response.body)['data'];
+    // var qwqwt = smth[0].values.USD.volume24h;
+    // print('${qwqwt}');
+    // var sorted = smth.sort((e1, e2) => e1.values.usd.volume24h.compareTo(e2.values.usd.volume24h));
+    // print(sorted);
+    // return ExchangesList.fromJson(sorted);
     return ExchangesList.fromJson(jsonDecode(response.body)['data']);
   } else {
     // If the server did not return a 200 OK response,
@@ -19,6 +31,12 @@ Future<ExchangesList> fetchExchanges() async {
     throw Exception('Failed to load album');
   }
 }
+///////////////////
+// Future<ExchangesList> sortByVolume24h(Future<ExchangesList> exchanges) {
+//
+//   Future<ExchangesList> sortedByVolume24h;
+//   return sortedByVolume24h;
+// }
 ///////////////////
 class ExchangesList {
   final List<Exchange> exchanges;
@@ -36,39 +54,65 @@ class ExchangesList {
         exchanges: exchanges,
     );
   }
-
-  @override
-  String toString() {
-    // TODO: implement toString
-    return super.toString();
-  }
 }
 
 class Exchange{
   final String id;
-  final String title;
+  final String name;
+  final Values values;
   // final String url;
 
   const Exchange({
     required this.id,
     // this.url,
-    required this.title,
+    required this.name,
+    required this.values
   }) ;
 
   factory Exchange.fromJson(Map<String, dynamic> json){
     return Exchange(
       id: json['id'].toString(),
-      title: json['name'],
+      name: json['name'],
+      values: Values.fromJSON(json['values']),
       // url: json['json'],
     );
   }
-  @override
-  String toString() {
-    // TODO: implement toString
-    return super.toString();
+}
+
+class Values {
+  final USD usd;
+
+  const Values({
+    required this.usd,
+});
+
+  factory Values.fromJSON(Map<String, dynamic> json){
+    return Values(
+      usd: USD.fromJSON(json['USD']),
+    );
   }
 }
-///////////////////
+
+class USD {
+  final String volume24h;
+  final String volume7d;
+  final String volume30d;
+
+  const USD({
+    required this.volume24h,
+    required this.volume7d,
+    required this.volume30d,
+});
+
+  factory USD.fromJSON(Map<String, dynamic> json){
+    return USD(
+      volume24h: json['volume24h'].toString(),
+      volume7d: json['volume7d'].toString(),
+      volume30d: json['volume30d'].toString(),
+    );
+  }
+}
+/////////////////// BACK HERE ////////
 void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
@@ -104,7 +148,7 @@ class _MyAppState extends State<MyApp> {
             future: exchangesList,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                print('HOORAY!!!');
+                // print('HOORAY!!!');
                 return ListView.builder(
                     padding: const EdgeInsets.all(8),
                     itemCount: 5, //change later
@@ -112,7 +156,7 @@ class _MyAppState extends State<MyApp> {
                       return Container(
                         height: 50,
                         // color: Colors.amber[colorCodes[index]],
-                        child: Center(child: Text(' ${snapshot.data!.exchanges[index].title} +  ${snapshot.data!.exchanges[index].id}/// ')),
+                        child: Center(child: Text(' ${snapshot.data!.exchanges[index].name} +  ${snapshot.data!.exchanges[index].values.usd.volume24h}/// ')),
                       );
                     }
                 );
