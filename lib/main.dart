@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/pages/home.dart';
 import 'package:flutter_todo/pages/main_screen.dart';
-import 'package:flutter_todo/pages/sample.dart';
 import 'package:flutter_todo/pages/exchanges.dart';
 
 void main() => runApp(MaterialApp(
@@ -10,12 +8,10 @@ void main() => runApp(MaterialApp(
     primarySwatch: Colors.deepOrange,
   ),
   // home: MainScreen(),
-  initialRoute: '/sample',
+  initialRoute: '/exchanges',
   routes: {
     '/': (context) => MainScreen(),
-    '/todo': (context) => Home(),
-    '/sample' : (context) => MyApp(),
-    '/ex' : (context) => Exchanges(),
+    '/exchanges' : (context) => ExchangesPage(),
   },
 ));
 

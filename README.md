@@ -1,17 +1,17 @@
 # flutter_todo
 
-A new Flutter project.
+A test Flutter project from Andrianov Maxim.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## About code
+lib/main.dart - входная точка приложения.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# Flutter_cryptorank
+lib/pages - папка, содержащая в себе страницы приложения.
+lib/pages/main_screen.dart - при запуске приложения открывается эта страница, содержащая кнопку для перехода на страницу с биржами,
+lib/pages/exchanges.dart - страница с биржами, отсортированными по размеру торгов на 24 часа (в USD).
+
+lib/classes - папка, содержащая в себе классы Exchange, Value, USD.
+lib/api - папка, содержащая в себе взаимодействие с API cryptorank.io.
