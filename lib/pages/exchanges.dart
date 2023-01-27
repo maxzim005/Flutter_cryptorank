@@ -30,9 +30,11 @@ class _ExchangesPageState extends State<ExchangesPage> {
       home: Scaffold(
         backgroundColor: Colors.grey[400],
         appBar: AppBar(
-          title: const Text(
-              'Exchanges, sorted by its value for 24 hours in USD',
-              style: TextStyle(fontSize: 30)),
+          title: Center(
+            child: Text(
+                'Exchanges, sorted by its value for 24 hours in USD',
+                style: TextStyle(fontSize: 30)),
+          ),
         ),
         body: Center(
           child: FutureBuilder<List<Exchange>>(
