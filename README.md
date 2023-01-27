@@ -6,12 +6,12 @@ A test Flutter project from Andrianov Maxim.
 [Для запуска необходим Docker]
 В терминале введите следующие команды:
 1. Создаем Docker Image:
-###docker build -t flutter-web .
+### docker build -t flutter-web .
 2. Создаем Docker Container:
-###docker run -d -p 8080:80 --name flutter-web flutter-web
+### docker run -d -p 8080:80 --name flutter-web flutter-web
 
 Чтобы остановить, введите следующую команду в терминал:
-###docker stop flutter-web
+### docker stop flutter-web
 
 
 ## About code
